@@ -1,14 +1,20 @@
 {
-  "name": "server",
+  "name": "jobpilot-ai-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend API for JobPilot AI",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "jwt",
+    "job-tracker"
+  ],
+  "author": "Yannam Chandra Shekhar Reddy",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
