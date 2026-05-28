@@ -1,20 +1,24 @@
 const bcrypt = require("bcryptjs");
+
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
 
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } =
+      req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({
         success: false,
-        message: "All fields are required",
+        message:
+          "All fields are required",
       });
     }
 
-    const existingUser = await User.findOne({ email });
+    const existingUser =
+      await User.findOne({ email });
 
     if (existingUser) {
       return res.status(400).json({
@@ -25,7 +29,8 @@ const registerUser = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
 
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword =
+      await bcrypt.hash(password, salt);
 
     const user = await User.create({
       name,
@@ -35,7 +40,8 @@ const registerUser = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: "User registered successfully",
+      message:
+        "User registered successfully",
       user: {
         id: user._id,
         name: user.name,
@@ -43,7 +49,10 @@ const registerUser = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Register Error:", error);
+    console.error(
+      "Register Error:",
+      error
+    );
 
     res.status(500).json({
       success: false,
@@ -59,11 +68,14 @@ const loginUser = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        message: "Email and password are required",
+        message:
+          "Email and password are required",
       });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+      email,
+    });
 
     if (!user) {
       return res.status(401).json({
@@ -72,10 +84,11 @@ const loginUser = async (req, res) => {
       });
     }
 
-    const isPasswordMatched = await bcrypt.compare(
-      password,
-      user.password
-    );
+    const isPasswordMatched =
+      await bcrypt.compare(
+        password,
+        user.password
+      );
 
     if (!isPasswordMatched) {
       return res.status(401).json({
