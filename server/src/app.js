@@ -22,7 +22,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://jobpilot-ai-khaki.vercel.app",
+      "https://jobpilot-ai-git-main-chandu-jobpilot.vercel.app",
     ],
     credentials: true,
   })
@@ -45,7 +45,5 @@ app.use(errorMiddleware);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(
-    `Server running on port ${PORT}`
-  );
+  console.log(`Server running on port ${PORT}`);
 });
